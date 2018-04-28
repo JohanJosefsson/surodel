@@ -180,12 +180,18 @@ int main()
 		if (i>800 && i % 20 == 0) { line.spriteX = -1.2; line.sprite = object[1]; }
 		if (i == 400) { line.spriteX = -1.2; line.sprite = object[7]; }
 		*/
+#if 0
+		// 4, 5, 6 are bystanders
+		if (i<300 && i % 20 == 0) { line.spriteX = -2.5; line.sprite = object[rand()%3 + 4]; }
+		if (i % 17 == 0) { line.spriteX = 3.0; line.sprite = object[rand() % 3 + 4]; }
+		if (i>300 && i % 20 == 0) { line.spriteX = -2.7; line.sprite = object[rand() % 3 + 4]; }
+		if (i>800 && i % 20 == 0) { line.spriteX = -4.2; line.sprite = object[rand() % 3 + 4]; }
+#endif
+		if (rand()%100 < 3) { line.spriteX = ((rand()%40) * 0.1 + 2.0)  * ((rand()%2)*2 - 1) ; line.sprite = object[rand() % 3 + 4]; }
 
-		if (i<300 && i % 20 == 0) { line.spriteX = -2.5; line.sprite = object[5]; }
-		if (i % 17 == 0) { line.spriteX = 3.0; line.sprite = object[6]; }
-		if (i>300 && i % 20 == 0) { line.spriteX = -2.7; line.sprite = object[4]; }
-		if (i>800 && i % 20 == 0) { line.spriteX = -4.2; line.sprite = object[1]; }
-		if (i == 400) { line.spriteX = -1.2; line.sprite = object[7]; }
+
+		// "The booth"
+		if (i == 400) { line.spriteX = -2.0/*-1.2*/; line.sprite = object[7]; }
 
 
 		if (i>750) line.y = sin(i / 30.0) * 1500;
@@ -196,9 +202,10 @@ int main()
 	int N = lines.size();
 	float playerX = 0;
 	int pos = 0;
-	int H = 1500;
+	int H = 1500 +4500;
 
 	int js = get_js();
+	int speed = 0;
 
 	while (app.isOpen())
 	{
@@ -215,7 +222,6 @@ int main()
 
 		}
 
-		int speed = 0;
 
 		if (sf::Joystick::isButtonPressed(js, 0)) playerX -= 0.1;
 		if (sf::Joystick::isButtonPressed(js, 1)) playerX += 0.1;
@@ -227,7 +233,7 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::Down)) speed = -200;
 		if (Keyboard::isKeyPressed(Keyboard::Tab)) speed *= 3;
 		*/
-		speed = 200;
+		speed = 200 + 100;
 		if (Keyboard::isKeyPressed(Keyboard::W)) H += 100;
 		if (Keyboard::isKeyPressed(Keyboard::S)) H -= 100;
 
