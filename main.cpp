@@ -205,7 +205,7 @@ int main()
 	int H = 1500 +4500;
 
 	int js = get_js();
-	int speed = 0;
+	int speed = 300.0;
 
 	while (app.isOpen())
 	{
@@ -233,14 +233,15 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::Down)) speed = -200;
 		if (Keyboard::isKeyPressed(Keyboard::Tab)) speed *= 3;
 		*/
-		speed = 200 + 100;
+		//speed = 200 + 100;
+		speed += 1.0;
 		if (Keyboard::isKeyPressed(Keyboard::W)) H += 100;
 		if (Keyboard::isKeyPressed(Keyboard::S)) H -= 100;
 
 		// JJ
 		if (playerX > 1.0)playerX = 1.0;
 		if (playerX < -1.0)playerX = -1.0;
-		if (playerX > 0.9 || playerX < -0.9)speed *= 0.3;
+		if (playerX > 0.9 || playerX < -0.9)speed = 0.3*300;
 
 		pos += speed;
 		while (pos >= N * segL) pos -= N * segL;
