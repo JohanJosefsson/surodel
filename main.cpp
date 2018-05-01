@@ -190,7 +190,7 @@ int main()
 		if (rand()%100 < 3) { line.spriteX = ((rand()%40) * 0.1 + 2.0)  * ((rand()%2)*2 - 1) ; line.sprite = object[rand() % 3 + 4]; }
 
 
-		// "The booth"
+		// The flag
 		if (i == 400) { line.spriteX = -2.0/*-1.2*/; line.sprite = object[7]; }
 
 
