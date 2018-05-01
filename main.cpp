@@ -146,6 +146,29 @@ int main()
 	RenderWindow app(VideoMode(width, height), "Outrun Racing!", screenStyle);
 
 
+	app.setMouseCursorVisible(false);
+
+
+	sf::Font font;
+	if (!font.loadFromFile("C:\\Windows\\fonts\\arial.ttf"))
+	{
+		printf("Error loading font.\n");
+		exit(1);
+	}
+	sf::Text text;
+	// select the font
+	text.setFont(font); 
+	text.setCharacterSize(24 * 4); // in pixels, not points!
+	//text.setOutlineColor(sf::Color::Red);
+	text.setFillColor(sf::Color::Red);
+
+
+
+
+
+
+
+
 	app.setFramerateLimit(60);
 
 	Texture t[50];
@@ -207,6 +230,8 @@ int main()
 	int js = get_js();
 	int speed = 300.0;
 
+	int speedometer_flag = 0;
+
 	while (app.isOpen())
 	{
 		Event e;
@@ -218,6 +243,8 @@ int main()
 			if (e.key.code == sf::Keyboard::Escape)
 				app.close();
 
+			if(e.key.code == sf::Keyboard::V)
+				speedometer_flag = 1;
 
 
 		}
@@ -293,6 +320,22 @@ int main()
 		////////draw objects////////
 		for (int n = startPos + 300; n>startPos; n--)
 			lines[n%N].drawSprite(app);
+
+
+		// Display the speed
+		if (speedometer_flag) {
+			char textBuf[200];
+			sprintf_s(textBuf, "     %d km/h", (int)(speed / 20));
+			text.setString(textBuf);
+			//text.setOutlineColor(sf::Color::Red);
+			app.draw(text);
+		}
+
+
+
+
+
+
 
 		app.display();
 	}
