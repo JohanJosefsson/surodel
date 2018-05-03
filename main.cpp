@@ -285,8 +285,18 @@ int main()
 		int maxy = height;
 		float x = 0, dx = 0;
 
+
+
+		float s = abs(playerX);
+		if (s > 0.9) {
+			dx += sin(rand())*(sqrt(s) - 0.9)*speed;
+			
+		}
+
+
 		// JJ
-		if (speed)playerX -= lines[startPos].curve * 0.022;
+		//if (speed)playerX -= lines[startPos].curve * 0.022;
+		if (speed)playerX -= lines[startPos].curve * 0.05;
 
 		///////draw road////////
 		for (int n = startPos; n<startPos + 300; n++)
